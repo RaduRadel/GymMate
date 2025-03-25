@@ -14,3 +14,6 @@ This project is a web application designed for gym management, providing an easy
 ### Planned Features  
 - **Google Maps integration** to locate the gym and provide directions.  
 - **AI-generated gym programs** using the ChatGPT API, allowing users to receive personalized workout plans based on their fitness goals.
+
+## Wireframe/Mock-up
+- https://www.figma.com/proto/J1PD3ksBlZkPNUp4xMn2JT/Untitled?node-id=11-277&t=KT3oZwicOPIuSNBY-1
