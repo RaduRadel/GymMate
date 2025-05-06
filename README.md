@@ -46,6 +46,7 @@
 ## Team Members
 - Baccela Radu-Costin - baccelaradu4@gmail.com
 - Ștefan Mădălina-Eliana - madalina.stefan2013@gmail.com
+- Petrec Matei-Teodor - petrec.matei@gmail.com
 
 ## Wireframe/Mock-up
 - https://www.figma.com/proto/J1PD3ksBlZkPNUp4xMn2JT/Untitled?node-id=11-277&t=KT3oZwicOPIuSNBY-1
