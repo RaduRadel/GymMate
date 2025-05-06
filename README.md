@@ -1,19 +1,51 @@
 # GymMate
-A web application for gym management, where users can book activities, trainers can post schedules, and exercise recommendations are provided.
+
+**GymMate** is a full-stack web application that helps gym members discover classes, book spots, connect with trainers, and socialize—all in one place.
+
+---
+
+## Features
+
+- **User Authentication**  
+  - Sign up & log in (Spring Security + BCrypt)  
+  - Role-based access (ROLE_USER, ROLE_ADMIN)  
+
+- **Class Scheduling & Booking**  
+  - Browse upcoming classes (date, time, trainer, spots left)  
+  - Book a class if seats remain; cancel a booking  
+
+- **Trainer Directory**  
+  - View trainer profiles, specialties, and email them  
+
+- **Social Feed**  
+  - Post, comment, and like updates in a community feed  
+
+- **User Profile**  
+  - View & edit your personal info (name, email, phone, password)  
+
+- **Admin Panel**  
+  - Create & edit classes (date/time, trainer, capacity)  
+  - View current enrollments and cancel bookings
+
+---
+
+## User Stories
+
+1. **As a Guest**, I want to register for an account so that I can book classes.  
+2. **As a Guest**, I want to log in so that I can access my profile and bookings.  
+3. **As a Member**, I want to browse the class schedule so that I can find sessions that fit my timetable.  
+4. **As a Member**, I want to book a class if seats remain so that I secure my spot.  
+5. **As a Member**, I want to view my booked classes (“My Schedule”) and cancel if needed.  
+6. **As a Member**, I want to view trainer profiles and email them so that I can request one-on-one sessions.  
+7. **As a Member**, I want to post in a social feed so that I can share my progress and interact with others.  
+8. **As an Admin**, I want to add or edit classes (date, time, trainer, capacity) so that the schedule stays up to date.  
+9. **As an Admin**, I want to view current enrollments so that I can manage attendance.
+
+---
 
 ## Team Members
 - Baccela Radu-Costin - baccelaradu4@gmail.com
 - Ștefan Mădălina-Eliana - madalina.stefan2013@gmail.com
-
-## Project Description
-This project is a web application designed for gym management, providing an easy and efficient way for users and trainers to interact.
-- **Regular users** can create an account, log in securely, and browse available gym activities. They can view details such as schedules, fees, and the number of available slots. Once a session is booked, users can track their upcoming activities and manage their reservations.
-- **Trainers** have dedicated accounts that allow them to post and manage activities. They can set session times, determine the number of available slots, and specify pricing. Trainers can also update or cancel activities as needed, ensuring a dynamic and flexible scheduling system.
-- **Exercise recommendations** help users optimize their workouts by selecting a specific muscle group, after which they receive a curated list of exercises targeting that area. Each recommendation includes a brief description of the exercise, proper form instructions, and potential benefits, helping users make informed fitness decisions.
-
-### Planned Features  
-- **Google Maps integration** to locate the gym and provide directions.  
-- **AI-generated gym programs** using the ChatGPT API, allowing users to receive personalized workout plans based on their fitness goals.
 
 ## Wireframe/Mock-up
 - https://www.figma.com/proto/J1PD3ksBlZkPNUp4xMn2JT/Untitled?node-id=11-277&t=KT3oZwicOPIuSNBY-1
