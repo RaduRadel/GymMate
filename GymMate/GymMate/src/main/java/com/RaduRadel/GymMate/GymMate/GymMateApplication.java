@@ -20,9 +20,9 @@ public class GymMateApplication {
 		return args -> {
 			if (userRepo.findByUsername("admin").isEmpty()) {
 				regSvc.register("admin", "admin", "ADMIN");
-				System.out.println("✔ Default admin/admin account created.");
+				System.out.println("Default admin/admin account created.");
 			} else {
-				System.out.println("ℹ️  Admin account already exists.");
+				System.out.println("Admin account already exists.");
 			}
 		};
 	}

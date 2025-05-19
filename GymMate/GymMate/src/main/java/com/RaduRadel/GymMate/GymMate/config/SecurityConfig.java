@@ -18,13 +18,11 @@ public class SecurityConfig {
 
     @Autowired private UserRepository userRepo;
 
-    // 1 Load users from DB
     @Bean
     public UserDetailsService userDetailsService() {
         return username -> {
             var user = userRepo.findByUsername(username)
                     .orElseThrow(() -> new UsernameNotFoundException("No user: " + username));
-            // build a Spring Security UserDetails
             return org.springframework.security.core.userdetails.User
                     .withUsername(user.getUsername())
                     .password(user.getPassword())
@@ -33,13 +31,11 @@ public class SecurityConfig {
         };
     }
 
-    // 2 Password hashing
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
 
-    // 3 Hook service + encoder into auth provider
     @Bean
     public DaoAuthenticationProvider authenticationProvider() {
         var auth = new DaoAuthenticationProvider();
@@ -48,21 +44,13 @@ public class SecurityConfig {
         return auth;
     }
 
-    // 4 Security rules
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
                 .csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(auth -> auth
-                        // public
-                        .requestMatchers("/", "/login", "/register", "/css/**", "/js/**").permitAll()
-                        // only ADMIN can reach /admin/**
-                        .requestMatchers("/admin/**").hasRole("ADMIN")
-                        // MEMBER & ADMIN can reach /member/**
-                        .requestMatchers("/member/**").hasAnyRole("MEMBER","ADMIN")
-                        // schedule/trainers (and any other) need at least MEMBER
-                        .requestMatchers("/schedule", "/trainers").hasAnyRole("MEMBER","ADMIN")
-                        // everything else requires auth
+                        .requestMatchers("/", "/login", "/register", "/css/**", "/js/**", "/contact", "/contact/message").permitAll()
+                        .requestMatchers("/admin/messages/**").hasRole("ADMIN")
                         .anyRequest().authenticated()
                 )
                 .formLogin(form -> form
