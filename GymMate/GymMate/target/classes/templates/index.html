@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>GymMate – Home</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body { background: #A3E635; }
+        .btn-primary { background: #8C1EFF; border: none; }
+        .btn-success { background: #8CFF1A; border: none; }
+        .nav-link { color: #FF8C00; font-weight: bold; }
+        header, footer { background: rgba(0,0,0,0.1); }
+    </style>
+</head>
+<body>
+
+<header class="py-3">
+    <div class="container d-flex justify-content-between align-items-center">
+        <h1 class="h4 text-success">GymMate</h1>
+        <nav>
+            <a th:href="@{/}"          class="nav-link link-secondary me-3">Home</a>
+            <a th:href="@{/schedule}"  class="nav-link me-3" sec:authorize="hasAnyRole('MEMBER','ADMIN')">Schedule</a>
+            <a th:href="@{/trainers}"  class="nav-link me-3" sec:authorize="hasAnyRole('MEMBER','ADMIN')">Trainers</a>
+            <a th:href="@{/social}"    class="nav-link me-3" sec:authorize="isAuthenticated()">Social</a>
+            <a th:href="@{/profile}"   class="nav-link"     sec:authorize="isAuthenticated()">Profile</a>
+        </nav>
+        <span sec:authorize="!isAuthenticated()">
+      <a th:href="@{/register}" class="btn btn-success">Join GymMate</a>
+    </span>
+        <span sec:authorize="isAuthenticated()">
+      <a th:href="@{/logout}" class="btn btn-danger">Log out</a>
+    </span>
+    </div>
+</header>
+
+<section class="text-center text-white py-5">
+    <div class="container">
+        <h2 class="display-6 mb-4">Transform Your Body, One Session at a Time</h2>
+        <p class="lead mb-4">
+            Personalized workouts, expert trainers, and your goals at the center.
+        </p>
+        <span sec:authorize="!isAuthenticated()">
+      <a th:href="@{/login}" class="btn btn-primary btn-lg">Get Started</a>
+    </span>
+        <span sec:authorize="isAuthenticated()">
+      <a th:href="@{/schedule}" class="btn btn-primary btn-lg">View Schedule</a>
+    </span>
+    </div>
+</section>
+
+<footer class="text-center py-3 text-white">
+    GymMate © 2025&nbsp;|&nbsp;Contact Us&nbsp;|&nbsp;Terms & Conditions
+</footer>
+</body>
+</html>

@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>GymMate – Schedule</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body { background: #A3E635; }
+    .btn-success { background: #8CFF1A; border: none; }
+    .btn-secondary { background: #D3D3D3; }
+    header, footer { background: rgba(0,0,0,0.1); }
+  </style>
+</head>
+<body>
+
+<header class="py-3">
+  <div class="container d-flex justify-content-between align-items-center">
+    <h1 class="h4 text-success">GymMate</h1>
+    <nav>
+      <a href="/"          class="nav-link me-3">Home</a>
+      <a href="/schedule"  class="nav-link link-secondary me-3">Schedule</a>
+      <a href="/trainers"  class="nav-link me-3">Trainers</a>
+      <a href="social.html" class="nav-link me-3">Social</a>
+      <a href="profile.html" class="nav-link">Profile</a>
+    </nav>
+    <a href="#" class="btn btn-success">Join GymMate</a>
+  </div>
+</header>
+
+
+<main class="container py-5">
+  <h2 class="mb-4">Class Schedule</h2>
+  <div class="row row-cols-1 row-cols-md-3 g-4">
+
+    <div class="col">
+      <div class="card h-100 shadow-sm">
+        <div class="card-body">
+          <h5 class="card-title">Yoga Flow</h5>
+          <p class="card-text">Mon, 6:00 PM – 7:00 PM<br>Spots left: 5</p>
+          <button class="btn btn-success w-100">Book</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="col">
+      <div class="card h-100 shadow-sm">
+        <div class="card-body">
+          <h5 class="card-title">HIIT Blast</h5>
+          <p class="card-text">Tue, 7:00 PM – 8:00 PM<br>Spots left: 0</p>
+          <button class="btn btn-secondary w-100" disabled>Full</button>
+        </div>
+      </div>
+    </div>
+    <!-- more cards -->
+  </div>
+</main>
+
+
+<footer class="text-center py-3 text-white">
+  GymMate © 2025&nbsp;|&nbsp;Contact Us&nbsp;|&nbsp;Terms & Conditions
+</footer>
+</body>
+</html>
