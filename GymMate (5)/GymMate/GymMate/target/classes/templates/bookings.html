@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>My Bookings | GymMate</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <style>
+        html, body {
+            height: 100%; margin: 0; padding: 0; background-color: #fefefd;
+            font-family: 'Segoe UI', sans-serif;
+        }
+        body { display: flex; flex-direction: column; min-height: 100vh; }
+        .navbar {
+            background-color: #fefefd !important;
+            border-bottom: 4px solid #0d6efd;
+        }
+        .nav-link { color: #343a40 !important; font-weight: 500; }
+        .nav-link:hover { color: #0d6efd !important; }
+        main { flex: 1; padding-top: 40px; padding-bottom: 60px; }
+        .booking-card {
+            border: 2px solid #0d6efd; border-radius: 12px;
+            padding: 20px; margin-bottom: 15px;
+            box-shadow: 0 0 5px rgba(0,0,0,0.05);
+        }
+        footer {
+            background-color: #343a40; color: white; padding: 20px 0;
+        }
+    </style>
+</head>
+<body>
+
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg">
+    <div class="container">
+        <a class="navbar-brand" th:href="@{/}">
+            <img th:src="@{/images/logo.png}" alt="GymMate Logo" height="90">
+        </a>
+        <div class="collapse navbar-collapse justify-content-end">
+            <ul class="navbar-nav">
+                <li class="nav-item"><a class="nav-link" th:href="@{/}">Home</a></li>
+                <li class="nav-item"><a class="nav-link" th:href="@{/classes}">Classes</a></li>
+                <li class="nav-item"><a class="nav-link" th:href="@{/trainers}">Trainers</a></li>
+                <li class="nav-item"><a class="nav-link" th:href="@{/profile}">Profile</a></li>
+                <li class="nav-item"><a class="nav-link active" th:href="@{/bookings}">Bookings</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<!-- Main -->
+<main class="container text-center">
+    <h2 class="mb-4 text-dark">Your Active Bookings</h2>
+    <div id="bookingList">
+        <p class="text-muted">Loading bookings...</p>
+    </div>
+</main>
+
+<!-- Footer -->
+<footer class="text-center">
+    <div class="container">
+        <p>&copy; 2025 GymMate. All rights reserved.</p>
+        <p>
+            <a href="#" class="text-white me-3">Instagram</a>
+            <a href="#" class="text-white me-3">Facebook</a>
+            <a href="#" class="text-white">Contact</a>
+        </p>
+    </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const list = document.getElementById("bookingList");
+        const bookings = JSON.parse(localStorage.getItem("bookings") || "[]");
+
+        if (bookings.length === 0) {
+            list.innerHTML = "<p class='text-muted'>No active bookings.</p>";
+            return;
+        }
+
+        list.innerHTML = "";
+
+        bookings.forEach(booking => {
+            const div = document.createElement("div");
+            div.className = "booking-card";
+            div.dataset.id = booking.id;
+            div.innerHTML = `
+          <h5>${booking.name} – ${booking.time}</h5>
+          <p><strong>Trainer:</strong> ${booking.trainer}</p>
+          <p><strong>Day:</strong> ${booking.day}</p>
+          <p><strong>Date:</strong> ${booking.date}</p>
+          <button class="btn btn-outline-danger btn-sm cancel-btn">Cancel Booking</button>
+        `;
+            list.appendChild(div);
+        });
+
+        document.querySelectorAll('.cancel-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const card = btn.closest(".booking-card");
+                const id = parseInt(card.dataset.id);
+
+                let bookings = JSON.parse(localStorage.getItem("bookings") || "[]");
+                bookings = bookings.filter(b => b.id !== id);
+                localStorage.setItem("bookings", JSON.stringify(bookings));
+
+                card.remove();
+
+                if (bookings.length === 0) {
+                    list.innerHTML = "<p class='text-muted'>No active bookings.</p>";
+                }
+            });
+        });
+    });
+</script>
+
+</body>
+</html>

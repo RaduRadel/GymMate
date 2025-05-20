@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Admin Inbox – GymMate</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+
+<!-- reuse your header/nav but only show this link to ADMIN -->
+<header class="py-3">
+    <div class="container d-flex justify-content-between align-items-center">
+        <h1 class="h4">GymMate Admin</h1>
+        <nav>
+            <a th:href="@{/admin/messages}" class="nav-link">Inbox</a>
+            <a th:href="@{/logout}" class="btn btn-sm btn-danger">Log out</a>
+        </nav>
+    </div>
+</header>
+
+<div class="container py-5">
+    <h2 class="mb-4">Message Inbox</h2>
+
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>Date</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Message</th>
+            <th>Resolve</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="m : ${msgs}">
+            <td th:text="${#temporals.format(m.createdAt,'dd/MM/yyyy HH:mm')}"></td>
+            <td th:text="${m.name}"></td>
+            <td><a th:href="'mailto:' + ${m.email}" th:text="${m.email}"></a></td>
+            <td th:text="${m.content}"></td>
+            <td>
+                <form th:action="@{'/admin/messages/' + ${m.id} + '/resolve'}" method="post">
+                    <button type="submit" class="btn btn-sm btn-success">Mark Resolved</button>
+                </form>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+    <div th:if="${msgs.isEmpty()}" class="alert alert-info">
+        No new messages.
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>GymMate – Trainers</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <style>
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            background-color: #fefefd;
+        }
+
+        body {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            font-family: 'Segoe UI', sans-serif;
+        }
+
+        main {
+            flex: 1;
+        }
+
+        .navbar {
+            background-color: #fefefd !important;
+            border-bottom: 4px solid #0d6efd !important;
+            box-shadow: none !important;
+        }
+
+        .nav-link {
+            font-weight: 500;
+            color: #343a40 !important;
+        }
+
+        .nav-link:hover {
+            color: #0d6efd !important;
+        }
+
+        .card-title {
+            color: #0d6efd;
+            font-weight: 600;
+        }
+
+        .btn-primary {
+            background-color: #0d6efd;
+            border: none;
+        }
+
+        .card-img-top {
+            object-fit: cover;
+            height: 300px;
+        }
+
+        footer {
+            background-color: #343a40;
+            color: white;
+            padding: 20px 0;
+        }
+    </style>
+</head>
+<body>
+
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg">
+    <div class="container">
+        <a class="navbar-brand" th:href="@{/}">
+            <img th:src="@{/images/logo.png}" alt="GymMate Logo" height="90">
+        </a>
+        <div class="collapse navbar-collapse justify-content-end">
+            <ul class="navbar-nav">
+                <li class="nav-item"><a class="nav-link" th:href="@{/}">Home</a></li>
+                <li class="nav-item"><a class="nav-link" th:href="@{/classes}">Classes</a></li>
+                <li class="nav-item"><a class="nav-link" th:href="@{/trainers}">Trainers</a></li>
+                <li class="nav-item"><a class="nav-link" th:href="@{/community}">Community</a></li>
+                <li class="nav-item"><a class="nav-link" th:href="@{/profile}">Profile</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<!-- Trainers Section -->
+<main class="container py-5">
+    <h2 class="mb-4 text-center text-dark">Meet Our Trainers</h2>
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+
+        <!-- Trainer Cards -->
+        <div class="col">
+            <div class="card h-100 shadow-sm text-center">
+                <img src="/images/alex.png" class="card-img-top" alt="Alex Carter">
+                <div class="card-body">
+                    <h5 class="card-title">Alex Carter</h5>
+                    <p class="card-text">Strength & Conditioning</p>
+                    <a href="mailto:alex@example.com" class="btn btn-primary">Email</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col">
+            <div class="card h-100 shadow-sm text-center">
+                <img src="/images/sophia.png" class="card-img-top" alt="Sophia Lee">
+                <div class="card-body">
+                    <h5 class="card-title">Sophia Lee</h5>
+                    <p class="card-text">Yoga & Mindfulness</p>
+                    <a href="mailto:sophia@example.com" class="btn btn-primary">Email</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col">
+            <div class="card h-100 shadow-sm text-center">
+                <img src="/images/jordan.png" class="card-img-top" alt="Jordan Miles">
+                <div class="card-body">
+                    <h5 class="card-title">Jordan Miles</h5>
+                    <p class="card-text">HIIT & Cardio Expert</p>
+                    <a href="mailto:jordan@example.com" class="btn btn-primary">Email</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col">
+            <div class="card h-100 shadow-sm text-center">
+                <img src="/images/emily.png" class="card-img-top" alt="Emily Rivers">
+                <div class="card-body">
+                    <h5 class="card-title">Emily Rivers</h5>
+                    <p class="card-text">Pilates & Flexibility</p>
+                    <a href="mailto:emily@example.com" class="btn btn-primary">Email</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col">
+            <div class="card h-100 shadow-sm text-center">
+                <img src="/images/marcus.png" class="card-img-top" alt="Marcus Daniels">
+                <div class="card-body">
+                    <h5 class="card-title">Marcus Daniels</h5>
+                    <p class="card-text">Bodybuilding & Nutrition</p>
+                    <a href="mailto:marcus@example.com" class="btn btn-primary">Email</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col">
+            <div class="card h-100 shadow-sm text-center">
+                <img src="/images/luna.png" class="card-img-top" alt="Luna Kim">
+                <div class="card-body">
+                    <h5 class="card-title">Luna Kim</h5>
+                    <p class="card-text">Kickboxing & Endurance</p>
+                    <a href="mailto:luna@example.com" class="btn btn-primary">Email</a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</main>
+
+<!-- Footer -->
+<footer class="text-center">
+    <div class="container">
+        <p>&copy; 2025 GymMate. All rights reserved.</p>
+        <p>
+            <a href="#" class="text-white me-3">Instagram</a>
+            <a href="#" class="text-white me-3">Facebook</a>
+            <a href="#" class="text-white">Contact</a>
+        </p>
+    </div>
+</footer>
+
+</body>
+</html>
