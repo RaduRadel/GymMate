@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>GymMate – Class Schedule</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <style>
+        html, body {
+          height: 100%;
+          margin: 0;
+          padding: 0;
+          background-color: #fefefd;
+          font-family: 'Segoe UI', sans-serif;
+        }
+        body {
+          display: flex;
+          flex-direction: column;
+          min-height: 100vh;
+        }
+        .navbar {
+          background-color: #fefefd !important;
+          border-bottom: 4px solid #0d6efd;
+        }
+        .nav-link {
+          color: #343a40 !important;
+          font-weight: 500;
+        }
+        .nav-link:hover {
+          color: #0d6efd !important;
+        }
+        main {
+          flex: 1;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+        .schedule-table {
+          border-collapse: separate;
+          border-spacing: 0;
+          border-radius: 12px;
+          overflow: hidden;
+        }
+        .schedule-table th,
+        .schedule-table td {
+          border: 1px solid #dee2e6;
+          padding: 15px;
+          text-align: center;
+          vertical-align: middle;
+        }
+        .schedule-table th {
+          background-color: #0d6efd;
+          color: white;
+        }
+        .time-col {
+          background-color: #f0f0f0;
+          font-weight: bold;
+        }
+        .class-entry {
+          color: #0d6efd;
+          font-weight: bold;
+          cursor: pointer;
+        }
+        .table-wrapper {
+          border: 4px solid #0d6efd;
+          border-radius: 12px;
+          padding: 20px;
+          box-shadow: 0 0 10px rgba(0,0,0,0.05);
+        }
+        .modal-content {
+          border: 4px solid #0d6efd;
+          border-radius: 12px;
+        }
+        footer {
+          background-color: #343a40;
+          color: white;
+          padding: 20px 0;
+        }
+    </style>
+</head>
+<body>
+
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg">
+    <div class="container">
+        <a class="navbar-brand" th:href="@{/}">
+            <img th:src="@{/images/logo.png}" alt="GymMate Logo" height="90">
+        </a>
+        <div class="collapse navbar-collapse justify-content-end">
+            <ul class="navbar-nav">
+                <li class="nav-item"><a class="nav-link" th:href="@{/}">Home</a></li>
+                <li class="nav-item"><a class="nav-link" th:href="@{/contact}">Contact Us</a></li>
+                <li class="nav-item"><a class="nav-link" th:href="@{/trainers}">Trainers</a></li>
+                <li class="nav-item"><a class="nav-link" th:href="@{/social}">Social Feed</a></li>
+                <li class="nav-item"><a class="nav-link" th:href="@{/bookings}">Bookings</a></li>
+                <li class="nav-item"><a class="nav-link" th:href="@{/profile}">Profile</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<!-- Main -->
+<main class="py-5">
+    <div class="container text-center">
+        <h2 class="mb-4 text-dark">Weekly Class Schedule</h2>
+        <div class="table-wrapper">
+            <div class="table-responsive">
+                <table class="schedule-table w-100">
+                    <thead>
+                    <tr>
+                        <th>Time</th>
+                        <th>Monday</th>
+                        <th>Tuesday</th>
+                        <th>Wednesday</th>
+                        <th>Thursday</th>
+                        <th>Friday</th>
+                        <th>Saturday</th>
+                        <th>Sunday</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td class="time-col">10:00</td>
+                        <td><div class="class-entry">Strength Training<br>10:00–14:00<br>Trainer: Alex Carter</div></td>
+                        <td></td>
+                        <td><div class="class-entry">Powerlifting<br>10:00–15:00<br>Trainer: Jordan Miles</div></td>
+                        <td></td>
+                        <td><div class="class-entry">Yoga Flow<br>10:00–13:00<br>Trainer: Sophia Lee</div></td>
+                        <td></td>
+                        <td><div class="class-entry">Pilates Core<br>10:00–13:30<br>Trainer: Emily Rivers</div></td>
+                    </tr>
+                    <tr>
+                        <td class="time-col">14:00</td>
+                        <td></td>
+                        <td><div class="class-entry">Kickboxing<br>14:00–17:00<br>Trainer: Luna Kim</div></td>
+                        <td></td>
+                        <td><div class="class-entry">HIIT<br>14:00–17:00<br>Trainer: Jordan Miles</div></td>
+                        <td></td>
+                        <td><div class="class-entry">Mindfulness<br>14:00–15:30<br>Trainer: Sophia Lee</div></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td class="time-col">16:00</td>
+                        <td><div class="class-entry">Bodybuilding<br>16:00–18:00<br>Trainer: Marcus Daniels</div></td>
+                        <td></td>
+                        <td><div class="class-entry">Nutrition Workshop<br>16:00–19:00<br>Trainer: Marcus Daniels</div></td>
+                        <td></td>
+                        <td><div class="class-entry">Endurance Burn<br>16:00–19:00<br>Trainer: Luna Kim</div></td>
+                        <td><div class="class-entry">Stretch & Flex<br>16:00–17:00<br>Trainer: Emily Rivers</div></td>
+                        <td><div class="class-entry">Cardio Blast<br>16:00–20:00<br>Trainer: Jordan Miles</div></td>
+                    </tr>
+                    <tr>
+                        <td class="time-col">18:00</td>
+                        <td><div class="class-entry">Pilates Core<br>18:00–20:00<br>Trainer: Emily Rivers</div></td>
+                        <td><div class="class-entry">Powerlifting<br>18:00–20:00<br>Trainer: Jordan Miles</div></td>
+                        <td></td>
+                        <td><div class="class-entry">Strength Training<br>18:00–22:00<br>Trainer: Alex Carter</div></td>
+                        <td></td>
+                        <td><div class="class-entry">Kickboxing<br>18:00–22:00<br>Trainer: Luna Kim</div></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td class="time-col">20:00</td>
+                        <td><div class="class-entry">Yoga Flow<br>21:00–23:00<br>Trainer: Sophia Lee</div></td>
+                        <td><div class="class-entry">HIIT<br>20:00–22:00<br>Trainer: Jordan Miles</div></td>
+                        <td><div class="class-entry">Stretch & Flex<br>20:00–22:00<br>Trainer: Emily Rivers</div></td>
+                        <td><div class="class-entry">Endurance Burn<br>20:30–23:00<br>Trainer: Luna Kim</div></td>
+                        <td><div class="class-entry">Cardio Blast<br>22:00–23:00<br>Trainer: Jordan Miles</div></td>
+                        <td></td>
+                        <td><div class="class-entry">Nutrition Workshop<br>21:00–23:00<br>Trainer: Marcus Daniels</div></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</main>
+
+<!-- Booking Modal -->
+<div class="modal fade" id="bookingModal" tabindex="-1" aria-labelledby="bookingModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content text-center border-primary border-4">
+            <div class="modal-header">
+                <h5 class="modal-title" id="bookingModalLabel">Book Class</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p><strong>Activity:</strong> <span id="modalClassName"></span></p>
+                <p><strong>Time:</strong> <span id="modalClassTime"></span></p>
+                <p><strong>Trainer:</strong> <span id="modalTrainer"></span></p>
+                <p><strong>Description:</strong> <span id="modalDescription"></span></p>
+                <p><strong>Date:</strong> <span id="modalDate"></span></p>
+                <button id="bookButton" class="btn btn-success">Book Training</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<footer class="text-center">
+    <div class="container">
+        <p>&copy; 2025 GymMate. All rights reserved.</p>
+    </div>
+</footer>
+
+<!-- Scripts -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+    let selectedEntry = null;
+
+    document.addEventListener('DOMContentLoaded', () => {
+      const descriptionMap = {
+        "Strength Training": "Build muscle and improve strength with resistance exercises.",
+        "Powerlifting": "Train your deadlift, bench, and squat techniques.",
+        "Yoga Flow": "Relax and gain flexibility with guided yoga poses.",
+        "Pilates Core": "Enhance core strength and posture through controlled movements.",
+        "Kickboxing": "High-energy cardio combined with self-defense techniques.",
+        "HIIT": "Intense intervals to burn fat and build endurance.",
+        "Mindfulness": "Focus on breath and awareness through meditation.",
+        "Bodybuilding": "Target hypertrophy with isolated muscle training.",
+        "Nutrition Workshop": "Learn fitness-friendly nutrition fundamentals.",
+        "Endurance Burn": "Boost stamina with long-form cardio and circuit work.",
+        "Stretch & Flex": "Improve mobility and reduce muscle tension.",
+        "Cardio Blast": "Heart-pumping aerobic training for stamina and fat burn."
+      };
+
+      function getNextDateOfWeek(dayName) {
+        const today = new Date();
+        const dayMap = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+        const todayIdx = today.getDay();
+        const targetIdx = dayMap.indexOf(dayName);
+        let delta = targetIdx - todayIdx;
+        if (delta <= 0) delta += 7;
+        const result = new Date(today);
+        result.setDate(today.getDate() + delta);
+        return result.toISOString().split('T')[0];
+      }
+
+      document.querySelectorAll('.class-entry').forEach(entry => {
+        entry.addEventListener('click', () => {
+          selectedEntry = entry;
+          const lines = entry.innerHTML.split('<br>');
+          const className = lines[0]?.trim();
+          const classTime = lines[1]?.trim();
+          const trainerName = lines[2]?.replace('Trainer:', '').trim();
+
+          const td = selectedEntry.closest("td");
+          const columnIndex = Array.from(td.parentNode.children).indexOf(td);
+          const table = td.closest("table");
+          const day = table.querySelector(`thead th:nth-child(${columnIndex + 1})`)?.textContent.trim();
+          const date = getNextDateOfWeek(day);
+
+          const description = descriptionMap[className] || "Join our expert-led session to improve your fitness.";
+
+          selectedEntry.dataset.className = className;
+          selectedEntry.dataset.classTime = classTime;
+          selectedEntry.dataset.trainer = trainerName;
+          selectedEntry.dataset.day = day;
+          selectedEntry.dataset.date = date;
+
+          document.getElementById('modalClassName').textContent = className;
+          document.getElementById('modalClassTime').textContent = classTime;
+          document.getElementById('modalTrainer').textContent = trainerName;
+          document.getElementById('modalDescription').textContent = description;
+          document.getElementById('modalDate').textContent = date;
+
+          const bookBtn = document.getElementById('bookButton');
+          bookBtn.textContent = "Book Training";
+          bookBtn.className = "btn btn-success";
+          bookBtn.disabled = false;
+
+          new bootstrap.Modal(document.getElementById('bookingModal')).show();
+        });
+      });
+
+      document.getElementById('bookButton').addEventListener('click', () => {
+        const bookBtn = document.getElementById('bookButton');
+        bookBtn.textContent = "Booked ✔️";
+        bookBtn.className = "btn btn-outline-success";
+        bookBtn.disabled = true;
+
+        if (selectedEntry) {
+          selectedEntry.innerHTML = `${selectedEntry.dataset.className}<br>${selectedEntry.dataset.classTime}`;
+          const bookings = JSON.parse(localStorage.getItem("bookings") || "[]");
+
+          const newBooking = {
+            id: Date.now(),
+            name: selectedEntry.dataset.className,
+            time: selectedEntry.dataset.classTime,
+            trainer: selectedEntry.dataset.trainer,
+            day: selectedEntry.dataset.day,
+            date: selectedEntry.dataset.date
+          };
+
+          const exists = bookings.some(b =>
+            b.name === newBooking.name &&
+            b.time === newBooking.time &&
+            b.day === newBooking.day
+          );
+
+          if (!exists) {
+            bookings.push(newBooking);
+            localStorage.setItem("bookings", JSON.stringify(bookings));
+          }
+        }
+      });
+    });
+</script>
+
+</body>
+</html>

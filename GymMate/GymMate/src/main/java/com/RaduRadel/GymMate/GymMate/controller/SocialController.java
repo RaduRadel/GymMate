@@ -4,6 +4,7 @@ import com.RaduRadel.GymMate.GymMate.model.SocialLike;
 import com.RaduRadel.GymMate.GymMate.model.SocialPost;
 import com.RaduRadel.GymMate.GymMate.repo.SocialLikeRepository;
 import com.RaduRadel.GymMate.GymMate.repo.SocialPostRepository;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.User;
@@ -81,6 +82,7 @@ public class SocialController {
     }
 
     @PostMapping("/{id}/delete")
+    @Transactional
     public String delete(
             @PathVariable Long id,
             @AuthenticationPrincipal User user

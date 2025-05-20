@@ -5,11 +5,22 @@ import com.RaduRadel.GymMate.GymMate.repo.MessageRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
 
 @Controller
 public class ContactController {
 
     @Autowired private MessageRepository msgRepo;
+    @GetMapping("/contact")
+    public String showContactForm(@RequestParam(name="sent", required=false) String sent,
+                                  Model model) {
+        model.addAttribute("sent", sent != null);
+        return "contact";
+    }
+
 
     @PostMapping("/contact/message")
     public String submitMessage(@RequestParam String name,

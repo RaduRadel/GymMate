@@ -12,12 +12,6 @@ public class HomeController {
     @GetMapping("/schedule")
     public String schedule() { return "schedule"; }
 
-    @GetMapping("/trainers")
+    @GetMapping("/home/trainers")
     public String trainers() { return "trainers"; }
-
-    @GetMapping("/contact")
-    public String contact() {
-        return "contact";
-    }
-
 }

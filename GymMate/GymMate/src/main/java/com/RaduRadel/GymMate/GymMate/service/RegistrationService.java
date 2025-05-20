@@ -12,6 +12,7 @@ public class RegistrationService {
     @Autowired private UserRepository repo;
     @Autowired private PasswordEncoder encoder;
 
+    /** registers with chosen role: ROLE_GUEST, ROLE_MEMBER, or ROLE_ADMIN */
     public void register(String username, String rawPassword, String role) {
         User u = new User();
         u.setUsername(username);
